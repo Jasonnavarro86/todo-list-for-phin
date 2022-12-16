@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { httpGetTodos, httpCreateTodo, httpUpdateTodos, httpDeleteTodo } from "./requests.hooks";
 
-function useTodos() {
+function useTodosFunctions() {
 
     const [todos, saveTodos] = useState([]);
     const [isPendingTodos, setIsPendingTodos] = useState(false);
@@ -102,4 +102,4 @@ function useTodos() {
     };
 }
 
-export default useTodos;
+export default useTodosFunctions;

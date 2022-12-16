@@ -5,7 +5,7 @@ import {
 import Header from "../components/Header";
 
 import TodoList from "./TodoList";
-import useTodos from '../hooks/useTodos.hooks'
+import useTodosFunctions from '../hooks/useTodosFunctions.hooks'
 
 const AppLayout = () => {
 
@@ -16,7 +16,7 @@ const AppLayout = () => {
         handleCompletedTask,
         handleEditTask,
         handleDeleteTask,
-    } = useTodos();
+    } = useTodosFunctions();
 
     return (
         <div>
