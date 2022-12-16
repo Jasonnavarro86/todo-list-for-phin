@@ -21,9 +21,9 @@ You may also see any lint errors in the console.
 
 ### `CLIENT SIDE - REACT `
 
- @ dir client/hooks/request.hooks
+ #### @ dir client/hooks/request.hooks
 
-Exports:
+##### Exports:
 
 httpGetTodos(): GET request to http://localhost:8000/todos returns todos list sorted by most recent date created
 
@@ -33,9 +33,9 @@ httpUpdateTodos(param: object {uid: ‘existing id to match to db’,  job: ‘s
 
 httpDeleteTodo(param: `string id`): DELETE request to  http://localhost:8000/todos/:id return success when todo item is deleted 
 
-@ client/hooks/useTodosFunctions.hooks
+#### @ client/hooks/useTodosFunctions.hooks
 
-Exports:
+##### Exports:
 
 todos: STATE holding todo list from firebase
 
@@ -56,7 +56,7 @@ handleDeleteTask: USECALLBACK function send uid house for url param to request.h
 
 ### `SERVER SIDE - NODE `
 
-@ dir server/routes/todos
+#### @ dir server/routes/todos
 
 APP listens for when request come in then checks routes -> controllers -> models
 
