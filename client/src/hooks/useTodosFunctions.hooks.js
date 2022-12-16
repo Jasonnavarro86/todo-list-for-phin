@@ -4,6 +4,7 @@ import { httpGetTodos, httpCreateTodo, httpUpdateTodos, httpDeleteTodo } from ".
 function useTodosFunctions() {
 
     const [todos, saveTodos] = useState([]);
+    const [todoItemToEdit, setTodoItemToEdit] = useState({});
     const [isPendingTodos, setIsPendingTodos] = useState(false);
 
     // fetch all todos that are not completed from our api
@@ -37,7 +38,7 @@ function useTodosFunctions() {
     }, [getTodos]);
 
     // send completed todo to api
-    const handleCompletedTask = useCallback(async (todo) => {
+    const handleCompletedTodo = useCallback(async (todo) => {
         setIsPendingTodos(true);
 
         const response = await httpUpdateTodos({
@@ -55,7 +56,7 @@ function useTodosFunctions() {
 
 
     // send edited todo to api
-    const handleEditTask = useCallback(async (e, todo) => {
+    const handleEditTodo = useCallback(async (e, todo) => {
         e.preventDefault();
         setIsPendingTodos(true);
 
@@ -70,6 +71,7 @@ function useTodosFunctions() {
         const success = response.ok;
         if (success) {
             getTodos()
+            setTodoItemToEdit({})
             setTimeout(() => {
                 setIsPendingTodos(false);
             }, 600);
@@ -77,8 +79,12 @@ function useTodosFunctions() {
         return
     }, [getTodos]);
 
+    const showEditComponent = useCallback(todo => {
+        setTodoItemToEdit(todo);
+    }, []);
+
     // delete todo 
-    const handleDeleteTask = useCallback(async (uid) => {
+    const handleDeleteTodo = useCallback(async (uid) => {
         setIsPendingTodos(true);
 
         const response = await httpDeleteTodo(uid);
@@ -87,7 +93,7 @@ function useTodosFunctions() {
             getTodos()
             setTimeout(() => {
                 setIsPendingTodos(false);
-            }, 600);
+            }, 100);
         }
         return
     }, [getTodos]);
@@ -95,10 +101,12 @@ function useTodosFunctions() {
     return {
         todos,
         isPendingTodos,
+        todoItemToEdit,
         createNewTodo,
-        handleCompletedTask,
-        handleEditTask,
-        handleDeleteTask,
+        handleCompletedTodo,
+        handleEditTodo,
+        handleDeleteTodo,
+        showEditComponent,
     };
 }
 

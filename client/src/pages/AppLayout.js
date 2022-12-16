@@ -12,10 +12,12 @@ const AppLayout = () => {
     const {
         todos,
         isPendingTodos,
+        todoItemToEdit,
         createNewTodo,
-        handleCompletedTask,
-        handleEditTask,
-        handleDeleteTask,
+        handleCompletedTodo,
+        handleEditTodo,
+        handleDeleteTodo,
+        showEditComponent,
     } = useTodosFunctions();
 
     return (
@@ -27,9 +29,11 @@ const AppLayout = () => {
                         <TodoList
                             todos={todos}
                             submitTodo={createNewTodo}
-                            handleCompletedTask={handleCompletedTask}
-                            handleEditTask={handleEditTask}
-                            handleDeleteTask={handleDeleteTask}
+                            handleCompletedTodo={handleCompletedTodo}
+                            handleEditTodo={handleEditTodo}
+                            showEditComponent={showEditComponent}
+                            handleDeleteTodo={handleDeleteTodo}
+                            todoItemToEdit={todoItemToEdit}
                             isPendingTodos={isPendingTodos}
                         />
                     </Route>

@@ -43,11 +43,11 @@ isPendingTodos: STATE BOOLEAN to track when waiting for request on any  USECALLB
 
 createNewTodo: USECALLBACK function to get value from input where user is creating a new todo and send to request.hook for create 
 
-handleCompletedTask: USECALLBACK function to change current todo.completed boolean send to request.hooks for update
+handleCompletedTodo: USECALLBACK function to change current todo.completed boolean send to request.hooks for update
 
-handleEditTask: USECALLBACK function to get value from input where user is editing a old todo and send to request.hooks for update 
+handleEditTodo: USECALLBACK function to get value from input where user is editing a old todo and send to request.hooks for update 
 
-handleDeleteTask: USECALLBACK function send uid house for url param to request.hooks for delete
+handleDeleteTodo: USECALLBACK function send uid house for url param to request.hooks for delete
 
 
 @ dir pages/AppLayout: imports TodoList Page for clientside route ‘/‘

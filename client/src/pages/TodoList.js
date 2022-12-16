@@ -1,35 +1,36 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import './todolist.styles.css'
 
 const TodoList = ({
     todos,
-    handleCompletedTask,
-    handleEditTask,
-    handleDeleteTask,
+    handleCompletedTodo,
+    handleEditTodo,
+    handleDeleteTodo,
     submitTodo,
     isPendingTodos,
+    showEditComponent,
+    todoItemToEdit,
 }) => {
-    const [editTodo, setEditTodo] = useState(null);
 
     const listBody = useMemo(() => {
         return todos?.map((todo) => {
             return (
                 <li key={todo.uid} className='todo-list-li'>
                     <label>
-                        <input type="checkbox" defaultChecked={todo.completed} onClick={() => handleCompletedTask({ ...todo, completed: !todo.completed })} />
+                        <input type="checkbox" defaultChecked={todo.completed} onClick={() => handleCompletedTodo({ ...todo, completed: !todo.completed })} />
                         {todo.completed ? <s>{todo.job}</s> : <>{todo.job}</>}
                     </label>
-                    <button className="todo-list-button" onClick={() => setEditTodo(todo)}>Edit</button>
-                    <button className="todo-list-button" onClick={() => handleDeleteTask(todo.uid)}>Delete</button>
+                    <button className="todo-list-button" onClick={() => showEditComponent(todo)}>Edit</button>
+                    <button className="todo-list-button" onClick={() => handleDeleteTodo(todo.uid)}>Delete</button>
                 </li>
             )
         }
         );
-    }, [todos, handleCompletedTask, handleDeleteTask]);
+    }, [todos, handleCompletedTodo, handleDeleteTodo, showEditComponent]);
 
     return (
         <div>
-            {!editTodo ?
+            {!todoItemToEdit.uid ?
                 <div>
                     <h1>Todo List:</h1>
                     <ul className="todo-list-ul">
@@ -51,13 +52,10 @@ const TodoList = ({
                     </form>
                 </div>
                 :
-                <form id="edit-todo-list-form" onSubmit={(e) => {
-                    handleEditTask(e, editTodo);
-                    setEditTodo(null);
-                }}>
+                <form id="edit-todo-list-form" onSubmit={(e) => handleEditTodo(e, todoItemToEdit)}>
                     <label htmlFor="todo-job-edit">Edit Todo:</label>
                     <br />
-                    <input type="text" id="todo-job-edit" name="todo-job-edit" placeholder={editTodo.job} />
+                    <input type="text" id="todo-job-edit" name="todo-job-edit" placeholder={todoItemToEdit.job} />
                     <button type="submit" layer="success">
                         Edit Todo ✔
                     </button>
