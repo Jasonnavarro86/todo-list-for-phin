@@ -23,7 +23,7 @@ You may also see any lint errors in the console.
 
  #### @ dir client/hooks/request.hooks
 
-##### Exports:
+#### Exports:
 
 httpGetTodos(): GET request to http://localhost:8000/todos returns todos list sorted by most recent date created
 
@@ -35,7 +35,7 @@ httpDeleteTodo(param: `string id`): DELETE request to  http://localhost:8000/tod
 
 #### @ client/hooks/useTodosFunctions.hooks
 
-##### Exports:
+#### Exports:
 
 todos: STATE holding todo list from firebase
 
